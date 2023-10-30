@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static files from the 'public' directory
+app.use(express.static('public'));
+
 
 // Define a route to serve the 'notes.html' page
 app.get('/notes', (req, res) => {
