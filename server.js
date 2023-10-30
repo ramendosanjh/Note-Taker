@@ -10,14 +10,15 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 // Define a route to serve the 'notes.html' page
 app.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, './notes.html'));
+  res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
 // Define a catch-all route to serve the 'index.html' page for other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 // Define the path to your db.json file
@@ -54,6 +55,7 @@ app.post('/api/notes', (req, res) => {
   });
 });
 
+
 // Helper function to generate a unique ID
 function generateUniqueID(notes) {
   let newID;
@@ -62,6 +64,26 @@ function generateUniqueID(notes) {
   } while (notes.some((note) => note.id === newID));
   return newID;
 }
+
+// Create a new note
+app.post('/api/notes', (req, res) => {
+  const newNote = { id: uuidv4(), ...req.body };
+  const dbFilePath = path.join(__dirname, 'db', 'db.json');
+  const notes = JSON.parse(fs.readFileSync(dbFilePath, 'utf8'));
+  notes.push(newNote);
+  fs.writeFileSync(dbFilePath, JSON.stringify(notes));
+  res.json(newNote);
+});
+
+// Delete a note by ID
+app.delete('/api/notes/:id', (req, res) => {
+  const { id } = req.params;
+  const dbFilePath = path.join(__dirname, 'db', 'db.json');
+  const notes = JSON.parse(fs.readFileSync(dbFilePath, 'utf8'));
+  const updatedNotes = notes.filter((note) => note.id !== id);
+  fs.writeFileSync(dbFilePath, JSON.stringify(updatedNotes));
+  res.json({ message: 'Note deleted successfully' });
+});
 
 // Start the server and listen on the defined port
 app.listen(PORT, () =>
