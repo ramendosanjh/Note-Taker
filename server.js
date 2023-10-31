@@ -11,7 +11,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'public' directory
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Define a route to serve the 'notes.html' page
+app.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/notes.html'));
+});
 
 
 // Define a route to serve the 'notes.html' page
@@ -71,7 +76,7 @@ function generateUniqueID(notes) {
 // Create a new note
 app.post('/api/notes', (req, res) => {
   const newNote = { id: uuidv4(), ...req.body };
-  const dbFilePath = path.join(__dirname, 'db', 'db.json');
+  const dbFilePath = path.join(__dirname,'/db/db.json');
   const notes = JSON.parse(fs.readFileSync(dbFilePath, 'utf8'));
   notes.push(newNote);
   fs.writeFileSync(dbFilePath, JSON.stringify(notes));
