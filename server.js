@@ -15,18 +15,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a route to serve the 'notes.html' page
 app.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/notes.html'));
+  res.sendFile(path.join(__dirname, 'public', 'notes.html'));
 });
 
 
 // Define a route to serve the 'notes.html' page
 app.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/notes.html'));
+  res.sendFile(path.join(__dirname, '/public','notes.html'));
 });
 
 // Define a catch-all route to serve the 'index.html' page for other routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+  res.sendFile(path.join(__dirname, '/public','index.html'));
 });
 
 // Define the path to your db.json file
