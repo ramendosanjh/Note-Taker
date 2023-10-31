@@ -14,13 +14,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a route to serve the 'notes.html' page
-app.get('/notes', (req, res) => {
+app.get('notes.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'notes.html'));
 });
 
 
 // Define a route to serve the 'notes.html' page
-app.get('/notes', (req, res) => {
+app.get('notes.html', (req, res) => {
   res.sendFile(path.join(__dirname, '/public','notes.html'));
 });
 
