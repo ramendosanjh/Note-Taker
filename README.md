@@ -14,9 +14,8 @@ To run the application locally, make sure you have Node.js installed. Then, foll
 ## Clone the repository.
 Run npm install to install the required dependencies.
 Run npm start to start the server.
-Access the application in your browser at http://localhost:3001.
 
-## Deployed Webpage Images
+## Images of Deployed Webpage
 
 <img width="1440" alt="note-taker application ss 1" src="https://github.com/ramendosanjh/Note-Taker/assets/134460692/03c690d8-ab7e-408c-9d2b-056e3a43146c">
 Landing page
