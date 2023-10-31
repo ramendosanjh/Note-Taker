@@ -1,5 +1,5 @@
 # Note Taker
-## Overview
+## Description
 This project is an Express.js application for taking and managing notes. It provides users with a simple interface to write and save notes, helping them stay organized and track their tasks. The application includes both the front-end and back-end components, and it saves and retrieves note data from a JSON file.
 
 ## Features
